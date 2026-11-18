@@ -1,0 +1,30 @@
+name: PQC-ZK Golden Model Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  verify-python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 1. Run Solinas Modular Reducer Verification
+        run: python3 scripts/pqc_reducer.py
+
+      - name: 2. Run Conflict-Free SRAM XOR-AGU Verification
+        run: python3 scripts/sram_xor_agu.py
+
+      - name: 3. Run Unified DIT/DIF NTT Verification
+        run: python3 scripts/unifiled_ntt.py
