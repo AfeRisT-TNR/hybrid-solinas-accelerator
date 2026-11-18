@@ -27,4 +27,4 @@ jobs:
         run: python3 scripts/sram_xor_agu.py
 
       - name: 3. Run Unified DIT/DIF NTT Verification
-        run: python3 scripts/unifiled_ntt.py
+        run: python3 scripts/unified_ntt.py
